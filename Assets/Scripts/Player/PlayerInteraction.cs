@@ -23,6 +23,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             _died = true;
             _cameraFollow.CanFollow(false);
+            SoundManager.Instance.GameEnd();
         }
     }
 
@@ -31,10 +32,12 @@ public class PlayerInteraction : MonoBehaviour
         if (other.transform.CompareTag("Coin"))
         {
             other.gameObject.SetActive(false);
+            SoundManager.Instance.Coin();
         } else if (other.transform.CompareTag("Spike"))
         {
             _cameraFollow.CanFollow(false);
             gameObject.SetActive(false);
+            SoundManager.Instance.GameEnd();
         }
     }
 
@@ -42,7 +45,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (other.transform.CompareTag("EndPlatform"))
         {
-            
+            SoundManager.Instance.GameStart();
         }
     }
 }
