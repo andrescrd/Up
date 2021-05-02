@@ -13,9 +13,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float blockWidth = 0.5f;
     [SerializeField] private float blockHeight = 0.2f;
 
-    private int _currentAmount = 0;
-    private Vector3 _lastPos = new Vector3();
-    private List<GameObject> _plattforms = new List<GameObject>();
+    private Vector3 lastPos = new Vector3();
+    private List<GameObject> platforms = new List<GameObject>();
 
     private void Awake()
     {
@@ -43,13 +42,13 @@ public class LevelGenerator : MonoBehaviour
             }
 
             newPlatform.transform.parent = this.transform;
-            _plattforms.Add(newPlatform);
+            platforms.Add(newPlatform);
 
             if (i == 0)
             {
-                _lastPos = newPlatform.transform.position;
+                lastPos = newPlatform.transform.position;
                 
-                var tempPos = _lastPos;
+                var tempPos = lastPos;
                 tempPos.y += 0.1f;
                 Instantiate(playerPrefab, tempPos, Quaternion.identity);
                 
@@ -61,15 +60,15 @@ public class LevelGenerator : MonoBehaviour
             if (left == 0)
             {
                 newPlatform.transform.position = new Vector3(
-                    _lastPos.x - blockWidth, _lastPos.y + blockHeight, _lastPos.z);
+                    lastPos.x - blockWidth, lastPos.y + blockHeight, lastPos.z);
             }
             else
             {
                 newPlatform.transform.position = new Vector3(
-                    _lastPos.x, _lastPos.y + blockHeight, _lastPos.z + blockWidth);
+                    lastPos.x, lastPos.y + blockHeight, lastPos.z + blockWidth);
             }
 
-            _lastPos = newPlatform.transform.position;
+            lastPos = newPlatform.transform.position;
 
             if (i < 25)
             {
@@ -80,10 +79,5 @@ public class LevelGenerator : MonoBehaviour
                 newPlatform.transform.DOLocalMoveY(endPos, 0.3f).SetDelay(i * 0.1f);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
