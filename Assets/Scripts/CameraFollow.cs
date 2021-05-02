@@ -33,4 +33,9 @@ public class CameraFollow : MonoBehaviour
                 _player.position.y + height, _player.position.z - 10), Time.deltaTime * dumping);
         }
     }
+
+    public void CanFollow(bool canFollow)
+    {
+        _canFollow = canFollow;
+    }
 }
