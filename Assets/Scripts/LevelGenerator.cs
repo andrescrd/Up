@@ -48,9 +48,12 @@ public class LevelGenerator : MonoBehaviour
             if (i == 0)
             {
                 _lastPos = newPlatform.transform.position;
+                
+                var tempPos = _lastPos;
+                tempPos.y += 0.1f;
+                Instantiate(playerPrefab, tempPos, Quaternion.identity);
+                
                 continue;
-
-                //TODO: add player
             }
 
             int left = Random.Range(0, 2);
