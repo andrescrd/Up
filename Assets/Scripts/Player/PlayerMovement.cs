@@ -41,13 +41,13 @@ public class PlayerMovement : MonoBehaviour
         
         if (left)
         {
-            transform.DORotate(new Vector3(0f, 90f, 0f), 0f);
+            transform.DORotate(new Vector3(0f, -90f, 0f), 0f);
             _rigidbody.DOJump(new Vector3(transform.position.x - movementForce,
                 transform.position.y + jumpForce, transform.position.z), jumpForce, 1, jumpTime);
         }
         else
         {
-            transform.DORotate(new Vector3(0f, -180, 0f), 0f);
+            transform.DORotate(new Vector3(0f, 0, 0f), 0f);
             _rigidbody.DOJump(new Vector3(transform.position.x,
                 transform.position.y + jumpForce, transform.position.z + movementForce), jumpForce, 1, jumpTime);
         }

@@ -47,10 +47,11 @@ public class LevelGenerator : MonoBehaviour
             if (i == 0)
             {
                 lastPos = newPlatform.transform.position;
+               newPlatform.transform.Rotate(Vector3.up, 180.0f);
                 
                 var tempPos = lastPos;
                 tempPos.y += 0.1f;
-                Instantiate(playerPrefab, tempPos, Quaternion.identity);
+                Instantiate(playerPrefab, tempPos,  newPlatform.transform.rotation);
                 
                 continue;
             }
