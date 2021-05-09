@@ -319,6 +319,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2252759665665249994}
   - component: {fileID: 1786189107311113507}
+  - component: {fileID: -3565093372969467930}
+  - component: {fileID: 3333957935797139110}
+  - component: {fileID: 1698844691244785452}
+  - component: {fileID: 4005168475243492354}
   m_Layer: 0
   m_Name: BlueBird
   m_TagString: Untagged
@@ -335,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 1443606361941100656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children:
   - {fileID: 6812288996696906113}
   - {fileID: 2691853753169779038}
@@ -361,6 +365,62 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &-3565093372969467930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443606361941100656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
+  m_Center: {x: 0, y: 0.006, z: 0}
+--- !u!54 &3333957935797139110
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443606361941100656}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &1698844691244785452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443606361941100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63c84d7c9af3574188de962bda53d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4005168475243492354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443606361941100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1beb7f1629687d7488610003e8cb65a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementForce: 0.5
+  jumpForce: 0.5
+  jumpTime: 0.15
 --- !u!1 &1541081542106395274
 GameObject:
   m_ObjectHideFlags: 0
