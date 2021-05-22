@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private UIManager _uiManager;
     private int _score = 0;
     private int _highScore = 0;
+    private int _currentScore = 0;
 
     private void Awake()
     {
@@ -20,20 +21,21 @@ public class GameManager : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey("score"))
-            _highScore =  PlayerPrefs.GetInt("score");        
+            _highScore =  PlayerPrefs.GetInt("score");    
+        
+        if (PlayerPrefs.HasKey("currentScore"))
+            _currentScore =  PlayerPrefs.GetInt("currentScore");
+
+        _score = _currentScore;
     }
 
     private void Start()
     {
         _uiManager = GameObject.FindObjectOfType<UIManager>();
         _uiManager.SetHighScore(_highScore);
+        _uiManager.SetScore(_currentScore);
     }
-
-    public void Play()
-    {
-        SceneManager.LoadScene(1);
-    }
-
+   
     public void Quit()
     {
         Application.Quit();
@@ -44,24 +46,32 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         _score++;
-        _uiManager.SetScore(_score);
+        _uiManager.SetScore(_score);        
 
         if (_score > _highScore)
         {
             _highScore = _score;
-            PlayerPrefs.SetInt("score",_highScore);
+            PlayerPrefs.SetInt("score",_highScore);            
+            PlayerPrefs.SetInt("currentScore", _score);
         }
     }
 
-    public void ReloadGame()
+    public void ReloadGame(bool clearData=true)
     {
+        if (clearData)
+            PlayerPrefs.DeleteKey("currentScore");
+        
         Invoke(nameof(Restart), 3f);
     }
 
     private void Restart()
     {
-        var sceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        Play();
+    }
+    
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void OpenMenu()

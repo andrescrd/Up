@@ -49,7 +49,7 @@ public class PlayerInteraction : MonoBehaviour
         if (other.transform.CompareTag("EndPlatform"))
         {
             SoundManager.Instance.GameStart();
-            GameManager.Instance.ReloadGame();
+            GameManager.Instance.ReloadGame(false);
         }
     }
 }

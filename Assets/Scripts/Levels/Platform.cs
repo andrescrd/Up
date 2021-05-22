@@ -49,7 +49,7 @@ public class Platform : MonoBehaviour
             switch (type)
             {
                 case 0:
-                    ActivateSpikes();
+                    // ActivateSpikes();
                     break;  
                 case 1:
                     AddCoin();
