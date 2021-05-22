@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementForce = 0.5f;
     [SerializeField] private float jumpForce = 0.5f;
     [SerializeField] private float jumpTime = 0.15f;
+    [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody _rigidbody;
+    private SphereCollider _groundCollider;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _groundCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -35,21 +39,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Jump(bool left)
+    public void Jump(bool left)
     {
-        SoundManager.Instance.Jump();
+        if (!IsGrounded())
+            return;
         
+        SoundManager.Instance.Jump();
+
         if (left)
         {
-            transform.DORotate(new Vector3(0f, -90f, 0f), 0f);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
             _rigidbody.DOJump(new Vector3(transform.position.x - movementForce,
                 transform.position.y + jumpForce, transform.position.z), jumpForce, 1, jumpTime);
         }
         else
         {
-            transform.DORotate(new Vector3(0f, 0, 0f), 0f);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             _rigidbody.DOJump(new Vector3(transform.position.x,
                 transform.position.y + jumpForce, transform.position.z + movementForce), jumpForce, 1, jumpTime);
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return  Physics.CheckCapsule(_groundCollider.bounds.center,
+            new Vector3(_groundCollider.bounds.center.x, _groundCollider.bounds.min.y, _groundCollider.bounds.center.z),
+            _groundCollider.radius * .9f, groundLayer);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using  DG.Tweening;
+using Scriptables;
 using Random = UnityEngine.Random;
 
 public class Platform : MonoBehaviour
@@ -10,13 +11,15 @@ public class Platform : MonoBehaviour
     [SerializeField] private GameObject[] spikesPrefab;
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private int chanceSpawn = 30;
+    [SerializeField] private TextureScriptableObject texturesScriptableObject;
     
     private bool fallDawn;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         ActivatePlatform();
+        var render = GetComponent<Renderer>();
+        render.material.mainTexture = texturesScriptableObject.GetTexture();
     }
 
     private void ActivateSpikes()
