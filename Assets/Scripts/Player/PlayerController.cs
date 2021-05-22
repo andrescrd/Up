@@ -12,9 +12,20 @@ public class PlayerController : MonoBehaviour
         _playerInteraction = GameObject.FindObjectOfType<PlayerMovement>();
     }
 
+    private void Update()
+    {
+        ExitGame();
+    }
+
     // Start is called before the first frame update
     public void Jump(bool left)
     {
         _playerInteraction.Jump(left);
     }
+
+    public void ExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            GameManager.Instance.OpenMenu();
+    }    
 }

@@ -34,7 +34,7 @@ public class Platform : MonoBehaviour
     {
         var coin = Instantiate(coinPrefab);
         coin.transform.position = transform.position;
-        coin.transform.DOLocalMoveY(1.0f, 0f);
+        coin.transform.DOLocalMoveY(0.4f, 0f);
         coin.transform.SetParent(transform);
     }
 

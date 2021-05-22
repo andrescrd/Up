@@ -63,4 +63,9 @@ public class GameManager : MonoBehaviour
         var sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
     }
+
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene(0);        
+    }
 }

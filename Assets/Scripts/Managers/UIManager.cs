@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int score = 0)
     {
-        ScoreText.text = $"x{score}";
+        ScoreText.text = $"{score}";
     }
 
     public void SetHighScore(int score = 0)
