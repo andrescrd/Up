@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int score = 0)
     {
+        if (ScoreText == null)
+            return;
+        
         ScoreText.text = $"{score}";
     }
 
