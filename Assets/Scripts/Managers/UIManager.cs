@@ -6,11 +6,18 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text ScoreText;
-    private int _score = 0;
+    [SerializeField] private Text HighScoreText;
 
-    public void IncrementScore()
+    public void SetScore(int score = 0)
     {
-        _score++;
-        ScoreText.text = $"x{_score}";
+        ScoreText.text = $"x{score}";
+    }
+
+    public void SetHighScore(int score = 0)
+    {
+        if (HighScoreText == null)
+            return;
+        
+        HighScoreText.text = HighScoreText && score > 0 ? $"{score}" : string.Empty;
     }
 }
