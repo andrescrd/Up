@@ -8,11 +8,14 @@ using Object = System.Object;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
     private UIManager _uiManager;
+    private AdsManager _adsManager;
+
     private int _score = 0;
     private int _highScore = 0;
     private int _currentScore = 0;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -32,8 +35,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _uiManager = GameObject.FindObjectOfType<UIManager>();
+        _adsManager = GameObject.FindObjectOfType<AdsManager>();
         _uiManager.SetHighScore(_highScore);
-        _uiManager.SetScore(_currentScore);
+        _uiManager.SetScore(_currentScore);        
     }
    
     public void Quit()
@@ -59,7 +63,10 @@ public class GameManager : MonoBehaviour
     public void ReloadGame(bool clearData=true)
     {
         if (clearData)
+        {
+            _adsManager.ShowInterstitialAd();
             PlayerPrefs.DeleteKey("currentScore");
+        }
         
         Invoke(nameof(Restart), 3f);
     }
